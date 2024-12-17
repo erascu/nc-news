@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes, Route, useLocation } from "react-router";
 
 import Header from "./components/Header";
@@ -7,9 +8,11 @@ import Topics from "./components/Topics";
 import Contacts from "./components/Contacts";
 
 import "./App.css";
+import SingleArticle from "./components/SingleArticle";
 
 function App() {
   // const { pathname } = useLocation();
+  const [articleId, setArticleId] = useState();
 
   return (
     <div className="wrapper">
@@ -18,7 +21,16 @@ function App() {
         <div className="content-container">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/articles" element={<Articles />} />
+            <Route
+              path="/articles"
+              element={
+                <Articles articleId={articleId} setArticleId={setArticleId} />
+              }
+            />
+            <Route
+              path="/articles/:id"
+              element={<SingleArticle articleId={articleId} />}
+            />
             <Route path="/topics" element={<Topics />} />
             <Route path="/contacts" element={<Contacts />} />
           </Routes>

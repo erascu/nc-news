@@ -103,6 +103,7 @@ article {
   overflow: hidden;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  cursor: pointer;
 }
 .article-img img {
   width: 100%;
@@ -158,16 +159,22 @@ article {
 .article-block h2 {
   font-weight: 700;
   font-size: 18px;
+  cursor: pointer;
 }
 
 .article-block p {
   margin-top: 12px;
   color: rgb(115, 115, 115);
+  line-height: 1.2;
 }
 .article-block p span {
   font-weight: 500;
   color: rgb(75, 75, 75);
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
 @media (max-width: 660px) {

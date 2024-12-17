@@ -12,14 +12,16 @@ import "./App.css";
 
 function App() {
   // const { pathname } = useLocation();
-
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get("https://nc-news-api-qfui.onrender.com/api/articles")
       .then(({ data }) => {
         setArticles(data.articles);
+        setIsLoading(false);
       });
   }, []);
 
@@ -32,7 +34,7 @@ function App() {
             <Route path="/" element={<Home articles={articles} />} />
             <Route
               path="/articles"
-              element={<Articles articles={articles} />}
+              element={<Articles articles={articles} isLoading={isLoading} />}
             />
             <Route path="/topics" element={<Topics />} />
             <Route path="/contacts" element={<Contacts />} />

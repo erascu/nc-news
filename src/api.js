@@ -12,4 +12,11 @@ const decreaseVote = (articleId) => {
   return api.patch(`/articles/${articleId}`, { inc_votes: -1 });
 };
 
-export { increaseVote, decreaseVote };
+const postComment = (articleId, newComment) => {
+  return api.post(`/articles/${articleId}/comments`, {
+    username: "weegembump",
+    body: `${newComment}`,
+  });
+};
+
+export { increaseVote, decreaseVote, postComment };

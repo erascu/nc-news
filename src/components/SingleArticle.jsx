@@ -60,13 +60,13 @@ function SingleArticle({ articleId }) {
           <ArticleBlock article={oneArticle} />
           {commentErr === 404 ? (
             <>
-              <CommentsBlock />
+              <CommentsBlock articleId={thisLocation} />
               <p style={{ textAlign: "center", color: "rgb(115, 115, 115)" }}>
                 No comments found for this article
               </p>
             </>
           ) : (
-            <CommentsBlock comments={comments} />
+            <CommentsBlock comments={comments} articleId={thisLocation} />
           )}
         </>
       )}

@@ -184,6 +184,7 @@ article {
 
 .comments-block {
   padding: 30px;
+  position: relative;
 }
 
 .comments-block h2 {
@@ -246,6 +247,47 @@ article {
 .comment-text p {
   margin-top: 10px;
   color: rgb(115, 115, 115);
+}
+
+.comment-input {
+  border: 1px solid rgb(235, 34, 42);
+}
+
+.comment-alert {
+  color: rgb(235, 34, 42);
+  position: absolute;
+  top: 140px;
+  left: 40px;
+}
+
+.alert-green {
+  color: rgb(14, 170, 8);
+  position: absolute;
+  top: 140px;
+  left: 40px;
+  line-height: 1.2;
+}
+
+@media (max-width: 575px) {
+  .alert-green {
+    width: 200px;
+    font-size: 13px;
+  }
+
+  .comment-alert {
+    width: 200px;
+  }
+}
+
+@media (max-width: 400px) {
+  .alert-green {
+    width: 130px;
+    font-size: 13px;
+  }
+
+  .comment-alert {
+    width: 130px;
+  }
 }
 
 .article-vote {

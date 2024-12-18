@@ -6,6 +6,10 @@ body {
   background-color: rgb(247, 248, 249);
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 .wrapper {
   min-height: 100%;
   overflow: hidden;
@@ -119,6 +123,10 @@ article {
   margin-top: 20px;
 }
 
+.article-action {
+  display: flex;
+}
+
 .article-topic {
   padding: 5px 15px;
   background-color: rgb(251, 241, 243);
@@ -157,6 +165,7 @@ article {
 }
 
 .article-block h2 {
+  display: inline;
   font-weight: 700;
   font-size: 18px;
   cursor: pointer;
@@ -236,6 +245,92 @@ article {
 
 .comment-text p {
   margin-top: 10px;
+  color: rgb(115, 115, 115);
+}
+
+.article-vote {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+}
+
+.vote-number {
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-vote p {
+  margin: 0 10px;
+  font-weight: 700;
+}
+
+.article-vote button {
+  height: 15px;
+  width: 15px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 16px;
+
+  background-color: rgb(16, 172, 16);
+  color: white;
+}
+
+.article-vote button:last-child {
+  background-color: rgb(235, 28, 35);
+  color: white;
+}
+
+.article-vote button:hover {
+  opacity: 0.85;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.article-vote button:active {
+  opacity: 1;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.notfound-block {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.notfound-body {
+  width: 400px;
+  background-color: white;
+  padding: 50px;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 1.1;
+
+  position: absolute;
+  top: 25%;
+  left: 40%;
+}
+
+.notfound-body h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: black;
+}
+
+.notfound-body h3 {
+  font-size: 36px;
+  font-weight: 700;
+  color: rgb(235, 28, 35);
+  margin-top: -5px;
+}
+
+.notfound-body p {
   color: rgb(115, 115, 115);
 }
 

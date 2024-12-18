@@ -62,7 +62,9 @@ function CommentsBlock({ comments, articleId }) {
         >
           {loading ? "Posting..." : feedback}
         </p>
-        <button type="submit">Comment</button>
+        <button className="submit-btn" type="submit">
+          Comment
+        </button>
       </form>
       <ul>
         {comments &&

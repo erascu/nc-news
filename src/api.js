@@ -19,4 +19,8 @@ const postComment = (articleId, newComment) => {
   });
 };
 
-export { increaseVote, decreaseVote, postComment };
+const deleteComment = (commentId) => {
+  return api.delete(`/comments/${commentId}`);
+};
+
+export { increaseVote, decreaseVote, postComment, deleteComment };

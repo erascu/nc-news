@@ -1,34 +1,52 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import ArticleBlock from "./ArticleBlock";
 import CommentsBlock from "./CommentsBlock";
 
 function SingleArticle({ articleId }) {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
+  const location = useLocation();
+  let thisLocation = "";
+  if (location.pathname.includes("/articles/")) {
+    thisLocation = location.pathname.replace("/articles/", "");
+  }
+
   const [oneArticle, setOneArticle] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [comments, setComments] = useState([]);
+  const [commentErr, setCommentErr] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
-    articleId > 0 &&
-      axios
-        .get(`https://nc-news-api-qfui.onrender.com/api/articles/${articleId}`)
-        .then(({ data }) => {
-          setOneArticle(data.article);
-          setIsLoading(false);
-        });
+    axios
+      .get(
+        `https://nc-news-api-qfui.onrender.com/api/articles/${
+          articleId || thisLocation
+        }`
+      )
+      .then(({ data }) => {
+        setOneArticle(data.article);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        err;
+      });
 
-    articleId > 0 &&
-      axios
-        .get(
-          `https://nc-news-api-qfui.onrender.com/api/articles/${articleId}/comments`
-        )
-        .then(({ data }) => {
-          setComments(data.comments);
-          setIsLoading(false);
-        });
+    setIsLoading(true);
+    axios
+      .get(
+        `https://nc-news-api-qfui.onrender.com/api/articles/${
+          articleId || thisLocation
+        }/comments`
+      )
+      .then(({ data }) => {
+        setComments(data.comments);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setCommentErr(err.status);
+      });
   }, [articleId]);
   return (
     <>
@@ -40,7 +58,16 @@ function SingleArticle({ articleId }) {
       ) : (
         <>
           <ArticleBlock article={oneArticle} />
-          <CommentsBlock comments={comments} />
+          {commentErr === 404 ? (
+            <>
+              <CommentsBlock />
+              <p style={{ textAlign: "center", color: "rgb(115, 115, 115)" }}>
+                No comments found for this article
+              </p>
+            </>
+          ) : (
+            <CommentsBlock comments={comments} />
+          )}
         </>
       )}
     </>

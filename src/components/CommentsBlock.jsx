@@ -11,11 +11,12 @@ function CommentsBlock({ comments }) {
         <button>Comment</button>
       </form>
       <ul>
-        {comments.map((comment) => (
-          <li key={comment.comment_id}>
-            <Comment comment={comment} />
-          </li>
-        ))}
+        {comments &&
+          comments.map((comment) => (
+            <li key={comment.comment_id}>
+              <Comment comment={comment} />
+            </li>
+          ))}
       </ul>
     </div>
   );

@@ -212,7 +212,7 @@ article {
   resize: none;
 }
 
-.comments-block button {
+.submit-btn {
   margin-top: 15px;
   width: 100px;
   padding: 5px 15px;
@@ -229,6 +229,22 @@ article {
   margin: 25px 0 0 0;
 }
 
+.comment-info-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-info-body button {
+  color: rgb(235, 34, 42);
+  font-weight: 400;
+  background-color: inherit;
+}
+
+.comment-info-body button:hover {
+  text-decoration: underline;
+}
+
 .comment-info {
   display: flex;
   align-items: center;
@@ -241,6 +257,7 @@ article {
 
 .comment-info p {
   margin-left: 7px;
+  white-space: nowrap;
   color: rgb(115, 115, 115);
 }
 

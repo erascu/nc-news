@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { deleteComment } from "../api";
+import { deleteComment } from "../services/api";
+import { formattedDate } from "../utils/dateUtils";
 
 function Comment({ comment }) {
   const [fakeRemove, setFakeRemove] = useState(false);
@@ -27,7 +28,7 @@ function Comment({ comment }) {
       <div className="comment-info-body">
         <div className="comment-info">
           <h3>{comment.author}</h3>
-          <p>{comment.created_at}</p>
+          <p>{formattedDate(comment.created_at)}</p>
           {comment.author === "weegembump" && (
             <p
               className={isDeleting || errorMessage ? "" : "hidden"}

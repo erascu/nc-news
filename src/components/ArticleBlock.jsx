@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-import { increaseVote, decreaseVote } from "../api";
+import { formattedDate } from "../utils/dateUtils";
+import { increaseVote, decreaseVote } from "../services/api";
 
 function ArticleBlock({ article, setArticleId, articleId }) {
   const [votes, setVotes] = useState(0);
@@ -76,7 +77,7 @@ function ArticleBlock({ article, setArticleId, articleId }) {
           <p>
             by <span>{article.author}</span>
           </p>
-          <p>{article.created_at}</p>
+          <p>{formattedDate(article.created_at)}</p>
           <p className={article.body ? "" : "hidden"}>{article.body}</p>
         </div>
       </article>

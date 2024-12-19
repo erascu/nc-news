@@ -59,6 +59,35 @@ body.no-scroll {
   margin: -2px 5px 0 0;
 }
 
+.dropdown-block {
+  position: relative;
+}
+
+.dropdown-block li:first-child {
+  margin-right: 30px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 25px;
+  left: -15px;
+
+  background-color: rgb(252, 241, 243);
+  color: rgb(233, 72, 144);
+  border-radius: 15px;
+
+  padding: 10px 15px;
+}
+
+.dropdown-menu li:not(:last-child) {
+  margin-bottom: 15px;
+  margin-right: 0 !important;
+}
+
+.dropdown-menu li:hover {
+  text-decoration: underline;
+}
+
 .user-block {
   display: flex;
   align-items: center;

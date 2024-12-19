@@ -1,7 +1,7 @@
 import Comment from "./Comment";
 import { useState } from "react";
 
-import { postComment } from "../api";
+import { postComment } from "../services/api";
 
 function CommentsBlock({ comments, articleId }) {
   const [newComment, setNewComment] = useState("");

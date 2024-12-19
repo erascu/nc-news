@@ -25,7 +25,11 @@ function App() {
             <Route
               path="/articles"
               element={
-                <Articles articleId={articleId} setArticleId={setArticleId} />
+                <Articles
+                  articleId={articleId}
+                  setArticleId={setArticleId}
+                  setDropMenu={setDropMenu}
+                />
               }
             />
             <Route

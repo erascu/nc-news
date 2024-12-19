@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { formattedDate } from "../utils/dateUtils";
 import { increaseVote, decreaseVote } from "../services/api";
 
-function ArticleBlock({ article, setArticleId, articleId }) {
+function ArticleBlock({ article, setArticleId, articleId, setDropMenu }) {
   const [votes, setVotes] = useState(0);
   const navigate = useNavigate();
 
@@ -35,7 +35,6 @@ function ArticleBlock({ article, setArticleId, articleId }) {
       setVotes((currVotes) => currVotes - 1);
     }
   };
-
   return (
     <>
       <article>
@@ -46,7 +45,14 @@ function ArticleBlock({ article, setArticleId, articleId }) {
           <img src={article.article_img_url} alt={article.topic} />
         </div>
         <div className="article-info">
-          <div className="article-topic">
+          <div
+            className="article-topic"
+            onClick={() => {
+              !navigate(`/topics/${article.topic}`) &&
+                navigate(`/topics/${article.topic}`);
+              setDropMenu(article.topic);
+            }}
+          >
             <h3>{article.topic}</h3>
           </div>
           <div className="article-action">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, useLocation } from "react-router";
+import { Routes, Route } from "react-router";
 
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -7,11 +7,11 @@ import Articles from "./components/Articles";
 import Topics from "./components/Topics";
 import Contacts from "./components/Contacts";
 import SingleArticle from "./components/SingleArticle";
+import NotFound from "./components/NotFound";
 
 import "./App.css";
 
 function App() {
-  // const { pathname } = useLocation();
   const [articleId, setArticleId] = useState();
   const [dropMenu, setDropMenu] = useState("");
 
@@ -37,7 +37,7 @@ function App() {
               element={<SingleArticle articleId={articleId} />}
             />
             <Route
-              path="/topics"
+              path="/topics/:topic_filter"
               element={
                 <Topics
                   dropMenu={dropMenu}
@@ -45,12 +45,9 @@ function App() {
                   setArticleId={setArticleId}
                 />
               }
-            >
-              <Route path="/topics/coding" element={<Topics />} />
-              <Route path="/topics/cooking" element={<Topics />} />
-              <Route path="/topics/football" element={<Topics />} />
-            </Route>
+            />
             <Route path="/contacts" element={<Contacts />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </main>

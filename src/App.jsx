@@ -21,7 +21,16 @@ function App() {
       <main>
         <div className="content-container">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <Home
+                  articleId={articleId}
+                  setArticleId={setArticleId}
+                  setDropMenu={setDropMenu}
+                />
+              }
+            />
             <Route
               path="/articles"
               element={

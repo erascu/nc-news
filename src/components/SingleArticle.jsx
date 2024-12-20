@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router";
+import { useLocation } from "react-router";
 import ArticleBlock from "./ArticleBlock";
 import CommentsBlock from "./CommentsBlock";
+import NotFound from "./NotFound";
 
 function SingleArticle({ articleId }) {
-  //const navigate = useNavigate();
   const location = useLocation();
   let thisLocation = "";
   if (location.pathname.includes("/articles/")) {
@@ -16,9 +16,13 @@ function SingleArticle({ articleId }) {
   const [isLoading, setIsLoading] = useState(false);
   const [comments, setComments] = useState([]);
   const [commentErr, setCommentErr] = useState("");
+  const [costumError, setCostumError] = useState({});
+
+  const isError = Object.keys(costumError).length > 0;
 
   useEffect(() => {
     setIsLoading(true);
+    setCostumError({});
     axios
       .get(
         `https://nc-news-api-qfui.onrender.com/api/articles/${
@@ -30,7 +34,10 @@ function SingleArticle({ articleId }) {
         setIsLoading(false);
       })
       .catch((err) => {
-        err;
+        setCostumError({
+          code: err.status,
+          message: "Oops! We couldn’t find the article you're looking for.",
+        });
       });
 
     setIsLoading(true);
@@ -47,7 +54,13 @@ function SingleArticle({ articleId }) {
       .catch((err) => {
         setCommentErr(err.status);
       });
+    setCommentErr("");
   }, [articleId]);
+
+  if (isError) {
+    return <NotFound costumError={costumError} />;
+  }
+
   return (
     <>
       <div className="content-block">

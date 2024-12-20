@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import ArticleBlock from "./ArticleBlock";
+import NotFound from "./NotFound";
 import { articlesFilter } from "../services/api";
 
 function Articles({ articleId, setArticleId, setDropMenu }) {
@@ -20,6 +21,7 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
 
   useEffect(() => {
     setIsLoading(true);
+    setError("");
     if (sortBy && orderBy) {
       articlesFilter(sortBy, orderBy)
         .then(({ data }) => {
@@ -43,6 +45,10 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
         });
     }
   }, [sortBy, orderBy]);
+
+  if (error) {
+    return <NotFound />;
+  }
 
   return (
     <>

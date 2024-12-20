@@ -10,6 +10,11 @@ body.no-scroll {
   overflow: hidden;
 }
 
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+
 .wrapper {
   min-height: 100%;
   overflow: hidden;
@@ -165,6 +170,16 @@ article {
 
 .sortby-block li img {
   height: 13px;
+}
+
+@media (max-width: 357px) {
+  .sortby-block {
+    flex-direction: column;
+  }
+
+  .sortby-block h3 {
+    margin-bottom: 10px;
+  }
 }
 
 .article-img {
@@ -344,7 +359,7 @@ article {
 }
 
 .alert-green {
-  color: rgb(14, 170, 8);
+  color: #068406;
   position: absolute;
   top: 140px;
   left: 40px;
@@ -401,12 +416,12 @@ article {
   border-radius: 50%;
   font-size: 16px;
 
-  background-color: rgb(16, 172, 16);
+  background-color: #068406;
   color: white;
 }
 
 .article-vote button:last-child {
-  background-color: rgb(235, 28, 35);
+  background-color: #dd131a;
   color: white;
 }
 
@@ -427,23 +442,50 @@ article {
   left: 0;
   width: 100%;
   height: 100%;
+
+  z-index: 1000;
 }
 
 .notfound-body {
-  width: 400px;
+  max-width: 400px;
   background-color: white;
   padding: 50px;
   border-radius: 15px;
-  text-align: center;
   line-height: 1.1;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   position: absolute;
-  top: 25%;
-  left: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.notfound-body button {
+  padding: 5px;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background-color: inherit;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.notfound-body button:hover {
+  color: #dd131a;
+  transition: color 0.1s ease-in-out;
+}
+
+.notfound-body button:active {
+  color: rgba(221, 19, 26, 0.8);
 }
 
 .notfound-body h2 {
-  font-size: 48px;
+  font-size: 100px;
   font-weight: 700;
   color: black;
 }
@@ -451,12 +493,18 @@ article {
 .notfound-body h3 {
   font-size: 36px;
   font-weight: 700;
-  color: rgb(235, 28, 35);
+  color: #dd131a;
   margin-top: -5px;
+  font-weight: 900;
+  text-wrap: nowrap;
 }
 
 .notfound-body p {
+  margin-top: 10px;
   color: rgb(115, 115, 115);
+  max-width: 250px;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .hidden {

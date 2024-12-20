@@ -21,6 +21,7 @@ function Comment({ comment }) {
       .finally(() => {
         setIsDeleting(false);
       });
+    setErrorMessage("");
   };
 
   return (

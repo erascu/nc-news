@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import NotFound from "./NotFound";
 
 import { formattedDate } from "../utils/dateUtils";
 import { increaseVote, decreaseVote } from "../services/api";
@@ -7,6 +8,7 @@ import { increaseVote, decreaseVote } from "../services/api";
 function ArticleBlock({ article, setArticleId, articleId, setDropMenu }) {
   const [votes, setVotes] = useState(0);
   const navigate = useNavigate();
+  const [error, setError] = useState({});
 
   const handleArticleClick = (e) => {
     e.preventDefault();
@@ -17,24 +19,35 @@ function ArticleBlock({ article, setArticleId, articleId, setDropMenu }) {
   const handleClickPlus = () => {
     increaseVote(article.article_id).catch((err) => {
       setVotes((currVotes) => currVotes - 1);
-      alert(
-        "We couldn't process your vote at the moment. Please try again later."
-      );
+      if (err.code === "ERR_NETWORK") {
+        setError({
+          code: 502,
+          message: "Network connectivity issue with the upstream server.",
+        });
+      }
     });
     setVotes((currVotes) => currVotes + 1);
   };
 
   const handleClickMinus = () => {
     if (article.votes + votes > 0) {
-      decreaseVote(article.article_id).catch(() => {
+      decreaseVote(article.article_id).catch((err) => {
         setVotes((currVotes) => currVotes + 1);
-        alert(
-          "We couldn't process your vote at the moment. Please try again later."
-        );
+        if (err.code === "ERR_NETWORK") {
+          setError({
+            code: 502,
+            message: "Network connectivity issue with the upstream server.",
+          });
+        }
       });
       setVotes((currVotes) => currVotes - 1);
     }
   };
+
+  if (Object.keys(error).length > 0) {
+    return <NotFound costumError={error} />;
+  }
+
   return (
     <>
       <article>

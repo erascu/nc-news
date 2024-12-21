@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import ArticleBlock from "./ArticleBlock";
 import { topicsFilter } from "../services/api";
 
@@ -8,11 +8,7 @@ function Topics({ dropMenu, articleId, setArticleId }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const location = useLocation();
-  let thisLocation = "";
-  if (location.pathname.includes("/topics/")) {
-    thisLocation = location.pathname.replace("/topics/", "");
-  }
+  const { topic_filter: topicId } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
@@ -32,7 +28,7 @@ function Topics({ dropMenu, articleId, setArticleId }) {
     <>
       <div className="content-block">
         <h2 className="content-title">
-          {thisLocation.charAt(0).toUpperCase() + thisLocation.slice(1)}
+          {topicId.charAt(0).toUpperCase() + topicId.slice(1)}
         </h2>
       </div>
       <ul>

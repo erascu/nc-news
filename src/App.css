@@ -241,6 +241,25 @@ article {
   transform: scaleX(-1);
 }
 
+.article-likes {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.article-likes:hover {
+  text-decoration: underline;
+}
+
+.article-likes img {
+  height: 16px;
+}
+
+.article-likes p {
+  margin-left: 5px;
+}
+
 .article-block {
   padding: 30px;
 }
@@ -391,7 +410,6 @@ article {
 .article-vote {
   display: flex;
   align-items: center;
-  margin-left: 30px;
 }
 
 .vote-number {

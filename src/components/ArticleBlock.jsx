@@ -70,13 +70,20 @@ function ArticleBlock({ article, setArticleId, articleId, setDropMenu }) {
           </div>
           <div className="article-action">
             <div
+              className={article.body ? "hidden" : "article-likes"}
+              onClick={handleArticleClick}
+            >
+              <img src="/like.svg" alt="like" />
+              <p>{article.votes}</p>
+            </div>
+            <div
               className={article.body ? "hidden" : "article-comments"}
               onClick={handleArticleClick}
             >
               <img src="/comment.svg" alt="comment" />
               <p>{article.comment_count}</p>
             </div>
-            <div className="article-vote">
+            <div className={!article.body ? "hidden" : "article-vote"}>
               <button onClick={handleClickPlus}>+</button>
               <div className="vote-number">
                 <p>

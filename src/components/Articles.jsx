@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router";
+import { articlesFilter } from "../services/api";
+
 import ArticleBlock from "./ArticleBlock";
 import NotFound from "./NotFound";
-import { articlesFilter } from "../services/api";
+import Skeleton from "./Skeleton/Skeleton";
 
 function Articles({ articleId, setArticleId, setDropMenu }) {
   const [articles, setArticles] = useState([]);
@@ -148,7 +150,7 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
       )}
       <ul>
         {isLoading
-          ? " Loading..."
+          ? [...new Array(3)].map((_, i) => <Skeleton key={i} />)
           : articles.map((article) => (
               <li key={article.article_id}>
                 <ArticleBlock

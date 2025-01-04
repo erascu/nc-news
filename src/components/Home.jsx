@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { topicsFilter } from "../services/api";
 import ArticleBlock from "./ArticleBlock";
+import Skeleton from "./Skeleton/Skeleton";
 
 function Home({ articleId, setArticleId, setDropMenu }) {
   const [keepData, setKeepData] = useState([]);
@@ -33,7 +34,7 @@ function Home({ articleId, setArticleId, setDropMenu }) {
       </div>
       <ul>
         {isLoading
-          ? "Loading"
+          ? [...new Array(3)].map((_, i) => <Skeleton key={i} />)
           : keepData.map((topic) => (
               <li key={topic.article_id}>
                 <ArticleBlock

@@ -4,6 +4,7 @@ import { useLocation } from "react-router";
 import ArticleBlock from "./ArticleBlock";
 import CommentsBlock from "./CommentsBlock";
 import NotFound from "./NotFound";
+import ArticleSkeleton from "./Skeleton/ArticleSkeleton";
 
 function SingleArticle({ articleId }) {
   const location = useLocation();
@@ -67,7 +68,7 @@ function SingleArticle({ articleId }) {
         <h2 className="content-title">Article</h2>
       </div>
       {isLoading ? (
-        "Loading..."
+        <ArticleSkeleton />
       ) : (
         <>
           <ArticleBlock article={oneArticle} />

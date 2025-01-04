@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import ArticleBlock from "./ArticleBlock";
 import { topicsFilter } from "../services/api";
+
+import ArticleBlock from "./ArticleBlock";
+import Skeleton from "./Skeleton/Skeleton";
 
 function Topics({ dropMenu, articleId, setArticleId }) {
   const [topicData, setTopicData] = useState([]);
@@ -33,7 +35,7 @@ function Topics({ dropMenu, articleId, setArticleId }) {
       </div>
       <ul>
         {isLoading
-          ? " Loading..."
+          ? [...new Array(3)].map((_, i) => <Skeleton key={i} />)
           : error
           ? error
           : topicData.map((topic) => (

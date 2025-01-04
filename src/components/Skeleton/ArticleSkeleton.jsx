@@ -7,8 +7,7 @@ function ArticleSkeleton() {
           <div className="skeleton-filter">
             <div className="skeleton-topic skeleton-pulse"></div>
             <div className="skeleton-rating">
-              <div className="skeleton-like skeleton-pulse"></div>
-              <div className="skeleton-comment skeleton-pulse"></div>
+              <div className="skeleton-comment skeleton-vote skeleton-pulse"></div>
             </div>
           </div>
           <div className="skeleton-title skeleton-pulse"></div>

@@ -641,6 +641,10 @@ article {
   border-radius: 15px;
 }
 
+.skeleton-vote {
+  width: 70px;
+}
+
 @keyframes pulse {
   0%,
   100% {

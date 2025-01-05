@@ -6,8 +6,9 @@ import { formattedDate } from "../utils/dateUtils";
 import { increaseVote, decreaseVote } from "../services/api";
 
 function ArticleBlock({ article, setArticleId, articleId, setDropMenu }) {
-  const [votes, setVotes] = useState(0);
   const navigate = useNavigate();
+
+  const [votes, setVotes] = useState(0);
   const [error, setError] = useState({});
 
   const handleArticleClick = (e) => {

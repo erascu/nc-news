@@ -3,6 +3,16 @@ import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { articlesFilter } from "../services/api";
 
+import { FaArrowDownShortWide, FaArrowDownWideShort } from "react-icons/fa6";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import ArticleBlock from "./ArticleBlock";
 import NotFound from "./NotFound";
 import Skeleton from "./Skeleton/Skeleton";
@@ -62,6 +72,12 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
           <h3>Sort by:</h3>
           <ul>
             <li
+              className={
+                (sortBy === "created_at" && orderBy === "desc") ||
+                (!sortBy && !orderBy)
+                  ? "active"
+                  : ""
+              }
               onClick={() => {
                 setSearchParams(
                   (prev) => {
@@ -80,9 +96,13 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
                 navigate(`?sort_by=created_at&order=desc`);
               }}
             >
-              Date <img src="/votes-desc.svg" alt="sort descending" />
+              Date
+              <img src="/votes-desc.svg" alt="sort descending" />
             </li>
             <li
+              className={
+                sortBy === "created_at" && orderBy === "asc" ? "active" : ""
+              }
               onClick={() => {
                 setSearchParams(
                   (prev) => {
@@ -101,9 +121,13 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
                 navigate(`?sort_by=created_at&order=asc`);
               }}
             >
-              Date <img src="/votes-asc.svg" alt="sort ascending" />
+              Date
+              <img src="/votes-asc.svg" alt="sort ascending" />
             </li>
             <li
+              className={
+                sortBy === "votes" && orderBy === "desc" ? "active" : ""
+              }
               onClick={() => {
                 setSearchParams(
                   (prev) => {
@@ -122,9 +146,13 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
                 navigate(`?sort_by=votes&order=desc`);
               }}
             >
-              Votes <img src="/votes-desc.svg" alt="votes descending" />
+              Votes
+              <img src="/votes-desc.svg" alt="votes descending" />
             </li>
             <li
+              className={
+                sortBy === "votes" && orderBy === "asc" ? "active" : ""
+              }
               onClick={() => {
                 setSearchParams(
                   (prev) => {
@@ -143,9 +171,41 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
                 navigate(`?sort_by=votes&order=asc`);
               }}
             >
-              Votes <img src="/votes-asc.svg" alt="votes ascending" />
+              Votes
+              <img src="/votes-asc.svg" alt="votes ascending" />
             </li>
           </ul>
+          {/* <Select>
+            <SelectTrigger className="w-[130px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem defaultValue="date_desc">
+                <div className="flex items-center">
+                  <FaArrowDownWideShort />
+                  <p className="ml-[7px]">Date</p>
+                </div>
+              </SelectItem>
+              <SelectItem value="date_asc">
+                <div className="flex items-center">
+                  <FaArrowDownShortWide />
+                  <p className="ml-[7px]">Date</p>
+                </div>
+              </SelectItem>
+              <SelectItem value="votes_desc">
+                <div className="flex items-center">
+                  <FaArrowDownWideShort />
+                  <p className="ml-[7px]">Votes</p>
+                </div>
+              </SelectItem>
+              <SelectItem value="votes_asc">
+                <div className="flex items-center">
+                  <FaArrowDownShortWide />
+                  <p className="ml-[7px]">Votes</p>
+                </div>
+              </SelectItem>
+            </SelectContent>
+          </Select> */}
         </div>
       )}
       <ul>

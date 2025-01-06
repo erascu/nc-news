@@ -10,13 +10,13 @@ You can access the live app here:
 This frontend project connects to the [Northcoders News API](https://github.com/erascu/nc-news-api), offering users a platform to view articles, post and delete comments, and interact with articles through upvotes and downvotes.
 
 ### Key Features:
-- Article Listing: Displays a list of all available articles.
-- Article Details: View detailed information about each article.
-- Commenting System: Allows users to add, view, and delete comments.
-- Voting on Articles: Upvote and downvote articles.
-- Topic Filtering: View articles filtered by topics.
-- Sorting Articles: Organize articles based on criteria such as date or votes.
-- Error Handling: Provides feedback to users in case of errors.
+- <b>Article Listing:</b> Displays a list of all available articles.
+- <b>Article Details:</b> View detailed information about each article.
+- <b>Commenting System:</b> Allows users to add, view, and delete comments.
+- <b>Voting on Articles:</b> Upvote and downvote articles.
+- <b>Topic Filtering:</b> View articles filtered by topics.
+- <b>Sorting Articles:</b> Organize articles based on criteria such as date or votes.
+- <b>Error Handling:</b> Provides feedback to users in case of errors.
 
 ## 📦 System Requirements
 

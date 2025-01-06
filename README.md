@@ -63,51 +63,40 @@ This project is set up to communicate with the backend API. Make sure the backen
 You may need to configure environment variables for your development environment. Create a .env file in the root of your project and add necessary API configurations if required.
 
 ## Available Features 🎨
-### 1. View Articles
-- <b>Component:</b> -//-
+### 1. View and sort Articles
+- <b>Component:</b> Articles
 - Displays a list of all articles with their titles, authors, and published date.
-
-### 2. View Individual Article
-- <b>Component:</b> -//-
-- Allows users to click on an article to view detailed information.
-
-### 3. View Comments
-- <b>Component:</b> -//-
-- Displays comments related to an article and allows the user to post and delete comments.
-
-### 4. Vote on Articles
-- <b>Component:</b> -//-
-- Users can upvote or downvote articles (currently hardcoded for a single user).
-
-### 5. Post a Comment
-- <b>Component:</b> -//-
-- Allows users to post a comment on an article. The user is hardcoded for now, but this functionality is ready to be connected to a proper authentication system.
-
-### 6. Delete Comments
-- <b>Component:</b> -//-
-- Users can delete their own comments.
-
-### 7. Filter Articles by Topic
-- <b>Component:</b> -//-
-- Displays articles filtered by the selected topic.
-
-### 8. Sort Articles
-- <b>Component:</b> -//-
 - Allows users to sort articles based on popularity or date.
 
-### 9. Error Handling
-- <b>Component:</b> -//-
-- Provides error messages when something goes wrong, such as a failed fetch request.
+### 2. View the Individual Article and Comments, Vote, Post, and Delete a Comment
+- <b>Component:</b> SingleArticle
+- Allows users to click on an article to view detailed information.
+- Displays comments related to an article and allows the user to post and delete comments.
+- Users can upvote or downvote articles (currently hardcoded for a single user).
+- Allows users to post a comment on an article. The user is hardcoded for now, but this functionality is ready to be connected to a proper authentication system.
+- Users can delete their own comments.
+
+### 3. Filter Articles by Topic
+- <b>Component:</b> Topics
+- Displays articles filtered by the selected topic.
+
+### 4. Error Handling
+- <b>Component:</b> NotFound
+- Provides an error message when something goes wrong, such as with an incorrect endpoint.
 
 ## 🛠️ Built With
 - <b>React</b> for building the UI components.
-- <b>Axios</b> for making API requests.
 - <b>React Router</b> for handling routing and navigation.
+- <b>Axios</b> for making API requests.
+- <b>Vite</b> for fast and modern build tools.
 - <b>CSS</b> for styling the application.
+- <b>Tailwind CSS</b> for utility-first CSS styling, used in combination with the ShadCN UI library for pre-designed, customizable components.
+- <b>Radix UI</b> for accessible, unstyled UI components (e.g., React Menubar and React Select).
 - <b>dotenv</b> for managing environment variables (if required).
+- <b>ESLint</b> for linting and code quality checks.
 
 ## 🚀 Deployment
-The app is deployed and can be accessed live. You can deploy it on services like Netlify, Vercel, or any other platform that supports React applications.
+The app is deployed and can be accessed [live](https://nc-news-hub.netlify.app/). You can deploy it on services like Netlify, Vercel, or any other platform that supports React applications.
 
 ## 💡 Additional Information
 This project was created to interact with the [Northcoders News API](https://github.com/erascu/nc-news-api), which is a backend service simulating a Reddit-like platform for managing articles, topics, and comments. The frontend is fully functional for interacting with the API and allows for an engaging user experience.

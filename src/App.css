@@ -183,16 +183,6 @@ article {
   height: 13px;
 }
 
-@media (max-width: 357px) {
-  .sortby-block {
-    flex-direction: column;
-  }
-
-  .sortby-block h3 {
-    margin-bottom: 10px;
-  }
-}
-
 .article-img {
   height: 300px;
   /* max-width: 800px; */

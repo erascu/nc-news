@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
 import { articlesFilter } from "../services/api";
 
-import { FaArrowDownShortWide, FaArrowDownWideShort } from "react-icons/fa6";
+import { FaArrowDownWideShort, FaArrowUpWideShort } from "react-icons/fa6";
 
 import {
   Select,
@@ -20,8 +20,8 @@ import Skeleton from "./Skeleton/Skeleton";
 function Articles({ articleId, setArticleId, setDropMenu }) {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedValue, setSelectedValue] = useState("date_desc");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const [searchParams, setSearchParams] = useSearchParams({
     sort_by: "",
@@ -30,6 +30,45 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
 
   const sortBy = searchParams.get("sort_by");
   const orderBy = searchParams.get("order");
+
+  const handleValueChange = (value) => {
+    let sortBy = "";
+    let orderBy = "";
+
+    // Update sortBy and orderBy based on the selected value
+    switch (value) {
+      case "date_desc":
+        sortBy = "created_at";
+        orderBy = "desc";
+        break;
+      case "date_asc":
+        sortBy = "created_at";
+        orderBy = "asc";
+        break;
+      case "votes_desc":
+        sortBy = "votes";
+        orderBy = "desc";
+        break;
+      case "votes_asc":
+        sortBy = "votes";
+        orderBy = "asc";
+        break;
+      default:
+        return;
+    }
+
+    // Update the query parameters and navigate
+    setSearchParams(
+      (prev) => {
+        prev.set("sort_by", sortBy);
+        prev.set("order", orderBy);
+        return prev;
+      },
+      { replace: true }
+    );
+
+    setSelectedValue(value);
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -44,14 +83,25 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
           setError("Failed to load sorting. Try again later!");
           setIsLoading(false);
         });
+
+      if (sortBy === "created_at" && orderBy === "desc") {
+        setSelectedValue("date_desc");
+      } else if (sortBy === "created_at" && orderBy === "asc") {
+        setSelectedValue("date_asc");
+      } else if (sortBy === "votes" && orderBy === "desc") {
+        setSelectedValue("votes_desc");
+      } else if (sortBy === "votes" && orderBy === "asc") {
+        setSelectedValue("votes_asc");
+      }
     } else {
       axios
         .get("https://nc-news-api-qfui.onrender.com/api/articles")
         .then(({ data }) => {
           setArticles(data.articles);
+          setSelectedValue("date_desc");
           setIsLoading(false);
         })
-        .catch((err) => {
+        .catch(() => {
           setError("Failed to load page. Try again later!");
           setIsLoading(false);
         });
@@ -67,120 +117,23 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
       <div className="content-block">
         <h2 className="content-title">Articles</h2>
       </div>
+      {isLoading && (
+        <div className="sortby-block">
+          <div className="flex items-center">
+            <div className="w-[47px] h-[21px] skeleton-pulse"></div>
+            <div className="w-[130px] h-[35px] skeleton-pulse ml-[10px]"></div>
+          </div>
+        </div>
+      )}
       {!isLoading && (
         <div className="sortby-block">
           <h3>Sort by:</h3>
-          <ul>
-            <li
-              className={
-                (sortBy === "created_at" && orderBy === "desc") ||
-                (!sortBy && !orderBy)
-                  ? "active"
-                  : ""
-              }
-              onClick={() => {
-                setSearchParams(
-                  (prev) => {
-                    prev.set("sort_by", "created_at");
-                    return prev;
-                  },
-                  { replace: true }
-                );
-                setSearchParams(
-                  (prev) => {
-                    prev.set("order", "desc");
-                    return prev;
-                  },
-                  { replace: true }
-                );
-                navigate(`?sort_by=created_at&order=desc`);
-              }}
-            >
-              Date
-              <img src="/votes-desc.svg" alt="sort descending" />
-            </li>
-            <li
-              className={
-                sortBy === "created_at" && orderBy === "asc" ? "active" : ""
-              }
-              onClick={() => {
-                setSearchParams(
-                  (prev) => {
-                    prev.set("sort_by", "created_at");
-                    return prev;
-                  },
-                  { replace: true }
-                );
-                setSearchParams(
-                  (prev) => {
-                    prev.set("order", "asc");
-                    return prev;
-                  },
-                  { replace: true }
-                );
-                navigate(`?sort_by=created_at&order=asc`);
-              }}
-            >
-              Date
-              <img src="/votes-asc.svg" alt="sort ascending" />
-            </li>
-            <li
-              className={
-                sortBy === "votes" && orderBy === "desc" ? "active" : ""
-              }
-              onClick={() => {
-                setSearchParams(
-                  (prev) => {
-                    prev.set("sort_by", "votes");
-                    return prev;
-                  },
-                  { replace: true }
-                );
-                setSearchParams(
-                  (prev) => {
-                    prev.set("order", "desc");
-                    return prev;
-                  },
-                  { replace: true }
-                );
-                navigate(`?sort_by=votes&order=desc`);
-              }}
-            >
-              Votes
-              <img src="/votes-desc.svg" alt="votes descending" />
-            </li>
-            <li
-              className={
-                sortBy === "votes" && orderBy === "asc" ? "active" : ""
-              }
-              onClick={() => {
-                setSearchParams(
-                  (prev) => {
-                    prev.set("sort_by", "votes");
-                    return prev;
-                  },
-                  { replace: true }
-                );
-                setSearchParams(
-                  (prev) => {
-                    prev.set("order", "asc");
-                    return prev;
-                  },
-                  { replace: true }
-                );
-                navigate(`?sort_by=votes&order=asc`);
-              }}
-            >
-              Votes
-              <img src="/votes-asc.svg" alt="votes ascending" />
-            </li>
-          </ul>
-          {/* <Select>
+          <Select value={selectedValue} onValueChange={handleValueChange}>
             <SelectTrigger className="w-[130px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem defaultValue="date_desc">
+              <SelectItem value="date_desc">
                 <div className="flex items-center">
                   <FaArrowDownWideShort />
                   <p className="ml-[7px]">Date</p>
@@ -188,7 +141,7 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
               </SelectItem>
               <SelectItem value="date_asc">
                 <div className="flex items-center">
-                  <FaArrowDownShortWide />
+                  <FaArrowUpWideShort />
                   <p className="ml-[7px]">Date</p>
                 </div>
               </SelectItem>
@@ -200,12 +153,12 @@ function Articles({ articleId, setArticleId, setDropMenu }) {
               </SelectItem>
               <SelectItem value="votes_asc">
                 <div className="flex items-center">
-                  <FaArrowDownShortWide />
+                  <FaArrowUpWideShort />
                   <p className="ml-[7px]">Votes</p>
                 </div>
               </SelectItem>
             </SelectContent>
-          </Select> */}
+          </Select>
         </div>
       )}
       <ul>

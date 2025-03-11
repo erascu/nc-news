@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import {
   Menubar,
   MenubarContent,
@@ -21,7 +22,10 @@ function Header({ setDropMenu }) {
             <img src="/nc-logo.png" alt="nc news logo" />
             <h1>NC News</h1>
           </Link>
-          <nav>
+          <div className="md:hidden">
+            <BurgerMenu setDropMenu={setDropMenu} />
+          </div>
+          <nav className="hidden md:block">
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -50,8 +54,8 @@ function Header({ setDropMenu }) {
               </li>
             </ul>
           </nav>
-          <div className="user-block">
-            <img src="/user.svg" alt="user" />
+          <div className="items-center cursor-pointer hidden md:flex">
+            <img className="h-[18px] mr-[5px]" src="/user.svg" alt="user" />
             <p>weegembump</p>
           </div>
         </div>

@@ -101,17 +101,6 @@ body.no-scroll {
   text-decoration: underline;
 }
 
-.user-block {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.user-block img {
-  height: 18px;
-  margin-right: 5px;
-}
-
 main {
   margin-bottom: 100px;
 }
@@ -680,17 +669,6 @@ article {
 
   .contact-block p {
     font-size: 16px;
-  }
-}
-
-@media (max-width: 660px) {
-  .header-block {
-    flex-direction: column;
-  }
-
-  .logo-block,
-  .header-block nav {
-    margin-bottom: 15px;
   }
 }
 

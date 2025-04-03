@@ -11,9 +11,9 @@ function CommentsBlock({ comments, articleId }) {
 
   const [fakeComment, setFakeComment] = useState([]);
 
-  useEffect(() => {
-    setFakeComment(comments);
-  }, [fakeComment]);
+  // useEffect(() => {
+  //   setFakeComment(comments);
+  // }, [fakeComment]);
 
   const onClickComment = (e) => {
     e.preventDefault();

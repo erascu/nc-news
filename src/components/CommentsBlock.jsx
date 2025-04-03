@@ -37,7 +37,7 @@ function CommentsBlock({ comments, articleId }) {
       postComment(articleId, newComment)
         .then(() => {
           setFeedback("Comment posted successfully!");
-          setFakeComment((prevComments) => [fakePost, ...prevComments]);
+          // setFakeComment((prevComments) => [fakePost, ...prevComments]);
           setShortComment(false);
           setNewComment("");
           // comments.unshift(fakeComment);

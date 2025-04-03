@@ -1,5 +1,5 @@
 import Comment from "./Comment";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { postComment } from "../services/api";
 
@@ -9,22 +9,41 @@ function CommentsBlock({ comments, articleId }) {
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState("");
 
+  const [fakeComment, setFakeComment] = useState([]);
+
+  useEffect(() => {
+    setFakeComment(comments);
+  }, [fakeComment]);
+
   const onClickComment = (e) => {
     e.preventDefault();
     if (newComment.length > 15) {
-      setLoading(true);
+      // setLoading(true);
+      // let fakePost = {
+      //   comment_id: Math.floor(Math.random() * 9999) + 1000,
+      //   author: "weegembump",
+      //   body: newComment,
+      //   created_at: new Date().toISOString(),
+      // };
+      // setFakeComment((prevComments) => [fakePost, ...prevComments]);
+      // console.log(fakeComment);
+      // setLoading(false);
+      // setFakeComment(
+      //   (fakeComment.body = newComment),
+      //   (fakeComment.created_at = new Date().toISOString()),
+      //   (fakeComment.comment_id = Math.floor(Math.random() * 9999) + 1000)
+      // );
+      // comments.unshift(fakeComment);
       postComment(articleId, newComment)
         .then(() => {
-          setFeedback(
-            "Comment posted successfully! Refresh the page to see it."
-          );
+          setFeedback("Comment posted successfully!");
+          setFakeComment((prevComments) => [fakePost, ...prevComments]);
           setShortComment(false);
           setNewComment("");
+          // comments.unshift(fakeComment);
         })
         .catch((err) =>
-          setFeedback(
-            "There was an error posting your comment. Please try again."
-          )
+          setFeedback("Comment submission failed. Please try again.")
         )
         .finally(() => {
           setLoading(false);
@@ -38,6 +57,7 @@ function CommentsBlock({ comments, articleId }) {
   const onHandleChange = (e) => {
     setNewComment(e.target.value);
   };
+
   return (
     <div className="comments-block">
       <h2>Comments</h2>

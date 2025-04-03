@@ -115,7 +115,8 @@ main {
   margin-top: 50px;
 }
 
-.content-block h2 {
+.content-block h1,
+h2 {
   font-size: 24px;
   font-weight: 700;
 }
@@ -363,14 +364,14 @@ article {
 .comment-alert {
   color: rgb(235, 34, 42);
   position: absolute;
-  top: 140px;
+  top: 150px;
   left: 40px;
 }
 
 .alert-green {
   color: #068406;
   position: absolute;
-  top: 140px;
+  top: 150px;
   left: 40px;
   line-height: 1.2;
 }
@@ -551,6 +552,24 @@ article {
   font-size: 36px;
   display: block;
   margin-bottom: 20px;
+}
+
+.contact-form {
+  input {
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #f7f8f9;
+    border-radius: 7px;
+    padding: 5px 10px;
+    border: 1px solid #d5d5d6;
+  }
+  textarea {
+    background-color: #f7f8f9;
+    border-radius: 7px;
+    padding: 5px 10px;
+    height: 120px;
+    border: 1px solid #d5d5d6;
+  }
 }
 
 .skeleton-block {
